@@ -29,7 +29,7 @@ struct ContentView: View {
 				Spacer()
 				ZStack {
 					Canvas(rendersAsynchronously: true) { context, size in
-						let marker = (motionDetector.angle + Double.pi) / (2 * Double.pi)
+						let marker = motionDetector.angle / (2 * Double.pi)
 						for i in 0..<toneController.scale.count {
 							// Bounds (from 0.0 to 1.0) of this slice of the wheel
 							let start = Double(i) / Double(toneController.scale.count)
@@ -88,7 +88,7 @@ struct ContentView: View {
 						.foregroundColor(.black)
 						.frame(width: markerSize.width - 50, height: markerSize.height)
 						.frame(width: markerSize.width, height: markerSize.height, alignment: .leading)
-						.rotationEffect(Angle(radians: motionDetector.angle))
+						.rotationEffect(Angle(radians: motionDetector.angle - Double.pi))
 				}
 				Spacer()
 			}
@@ -163,7 +163,7 @@ struct ContentView: View {
 
 	private func updateFrequency(_ angle: Double) {
 		let lastFrequency = toneController.toneOutputUnit.frequency
-		toneController.updateNote((angle + Double.pi) / (2 * Double.pi))
+		toneController.updateNote(angle / (2 * Double.pi))
 		// Provide feedback when changing notes
 		if toneController.toneOutputUnit.frequency != lastFrequency {
 			feedbackGenerator.selectionChanged()

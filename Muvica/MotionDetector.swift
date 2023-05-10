@@ -27,7 +27,8 @@ class MotionDetector: ObservableObject {
 		let q = data!.attitude.quaternion
 		let siny_cosp = 2 * (q.w * q.z + q.x * q.y)
 		let cosy_cosp = 1 - 2 * (q.y * q.y + q.z * q.z)
-		self.angle = atan2(siny_cosp, cosy_cosp)
+		self.angle = atan2(siny_cosp, cosy_cosp) + Double.pi + Double.pi / 2
+		self.angle.formTruncatingRemainder(dividingBy: 2 * Double.pi)
 		if let callback = self.callback {
 			callback(self.angle)
 		}
