@@ -1,3 +1,5 @@
+import Foundation
+
 enum ScaleType: String, CaseIterable, Identifiable {
 	case majorPentatonic = "Major Pentatonic"
 	case major = "Major"
@@ -51,7 +53,7 @@ enum Note: String, CaseIterable, Identifiable {
 	}
 }
 
-class ToneController {
+class ToneController: ObservableObject {
 	// A note value of 0 should correspond to C1, which normally has a value of 4 (A0 = 1)
 	let baseOffset: Int = 4
 
