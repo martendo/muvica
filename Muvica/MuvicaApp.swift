@@ -8,10 +8,12 @@ struct MuvicaApp: App {
 
 	var body: some Scene {
 		WindowGroup {
-			ContentView()
-				.environmentObject(settings)
-				.environmentObject(motionDetector)
-				.environmentObject(toneController)
+			NavigationStack {
+				ContentView()
+			}
+			.environmentObject(settings)
+			.environmentObject(motionDetector)
+			.environmentObject(toneController)
 		}
 	}
 }

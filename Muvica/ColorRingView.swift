@@ -15,9 +15,9 @@ struct ColorRingView: View {
 				// Whether or not the current slice is the note being played
 				let isPlaying = settings.isSoundEnabled && marker >= start && marker < end
 				let sliceColor = Color(
-					hue: Double(i) / Double(toneController.scale.count),
-					saturation: isPlaying ? 0.75 : 0.5,
-					brightness: isPlaying ? 0.5 : 0.9)
+					hue: settings.isColorVaryingHue ? ((settings.colorMaxHue - settings.colorMinHue) * start + settings.colorMinHue) : settings.colorMinHue,
+					saturation: settings.isColorVaryingSaturation ? start : (isPlaying ? 0.75 : 0.5),
+					brightness: settings.isColorVaryingBrightness ? start : (isPlaying ? 0.5 : 0.9))
 
 				// Draw this slice
 				var path = Path()

@@ -12,12 +12,6 @@ struct ContentView: View {
 
 	var body: some View {
 		List {
-			Section {
-				Text("Lay your device face-up and rotate to control pitch.")
-			} header: {
-				Text("Muvica")
-					.font(.title)
-			}
 			HStack {
 				Spacer()
 				ZStack {
@@ -32,7 +26,6 @@ struct ContentView: View {
 				}
 				Spacer()
 			}
-			Toggle("Octave Separators", isOn: $settings.isShowingSeparators)
 			Section("Control") {
 				Picker("Scale", selection: $settings.scaleType) {
 					ForEach(ScaleType.allCases) { type in
@@ -98,7 +91,11 @@ struct ContentView: View {
 					}
 				}
 			}
+			NavigationLink("Appearance Settings") {
+				AppearanceSettingsView()
+			}
 		}
+		.navigationTitle("Muvica")
 		.onAppear {
 			motionDetector.callback = updateFrequency(_:)
 			updateScale()
