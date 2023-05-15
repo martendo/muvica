@@ -1,7 +1,7 @@
 import SwiftUI
 
 struct AppearanceSettingsView: View {
-	@EnvironmentObject private var settings: Settings
+	@ObservedObject private var settings = Settings.shared
 
 	var body: some View {
 		List {

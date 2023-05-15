@@ -1,7 +1,7 @@
 import SwiftUI
 
 struct DeviceSettingsView: View {
-	@EnvironmentObject private var settings: Settings
+	@ObservedObject private var settings = Settings.shared
 	@EnvironmentObject private var motionDetector: MotionDetector
 
     var body: some View {

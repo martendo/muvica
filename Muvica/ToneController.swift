@@ -1,4 +1,4 @@
-import Foundation
+import SwiftUI
 
 enum ScaleType: String, CaseIterable, Identifiable {
 	case majorPentatonic = "Major Pentatonic"
@@ -54,6 +54,8 @@ enum Note: String, CaseIterable, Identifiable {
 }
 
 class ToneController: ObservableObject {
+	@ObservedObject private var settings = Settings.shared
+
 	// A note value of 0 should correspond to C1, which normally has a value of 4 (A0 = 1)
 	let baseOffset: Int = 4
 
@@ -78,5 +80,21 @@ class ToneController: ObservableObject {
 
 	func updateNote(_ value: Double) {
 		self.toneOutputUnit.setNote(self.scale[Int(value * Double(self.scale.count))])
+	}
+
+	func updateScale() {
+		self.setScale(
+			tonic: settings.tonic,
+			type: settings.scaleType,
+			minOctave: settings.minOctave,
+			maxOctave: settings.maxOctave)
+	}
+
+	func updateWaveform() {
+		self.toneOutputUnit.waveform = settings.waveform
+	}
+
+	func updateVolume() {
+		self.toneOutputUnit.volume = settings.isSoundEnabled ? settings.volume : 0
 	}
 }

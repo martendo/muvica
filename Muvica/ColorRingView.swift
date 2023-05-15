@@ -1,7 +1,7 @@
 import SwiftUI
 
 struct ColorRingView: View {
-	@EnvironmentObject private var settings: Settings
+	@ObservedObject private var settings = Settings.shared
 	@EnvironmentObject private var motionDetector: MotionDetector
 	@EnvironmentObject private var toneController: ToneController
 	

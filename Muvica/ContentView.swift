@@ -4,11 +4,9 @@ struct ContentView: View {
 	let markerWidth: CGFloat = 200
 	let markerHeight: CGFloat = 5
 
-	@EnvironmentObject private var settings: Settings
+	@ObservedObject private var settings = Settings.shared
 	@EnvironmentObject private var motionDetector: MotionDetector
 	@EnvironmentObject private var toneController: ToneController
-
-	private var feedbackGenerator = UISelectionFeedbackGenerator()
 
 	var body: some View {
 		List {
@@ -33,7 +31,7 @@ struct ContentView: View {
 					}
 				}
 				.onChange(of: settings.scaleType) { _ in
-					updateScale()
+					toneController.updateScale()
 				}
 				Picker("Tonic", selection: $settings.tonic) {
 					ForEach(Note.allCases) { note in
@@ -42,7 +40,7 @@ struct ContentView: View {
 				}
 				.pickerStyle(.segmented)
 				.onChange(of: settings.tonic) { _ in
-					updateScale()
+					toneController.updateScale()
 				}
 				HStack {
 					Text("From")
@@ -51,7 +49,7 @@ struct ContentView: View {
 					Stepper(value: $settings.minOctave, in: 1...settings.maxOctave) {
 						Text("\(settings.tonic.rawValue)\(settings.minOctave)")
 					} onEditingChanged: { _ in
-						updateScale()
+						toneController.updateScale()
 					}
 					Text("to")
 						.font(.caption)
@@ -59,7 +57,7 @@ struct ContentView: View {
 					Stepper(value: $settings.maxOctave, in: settings.minOctave...7) {
 						Text("\(settings.tonic.rawValue)\(settings.maxOctave)")
 					} onEditingChanged: { _ in
-						updateScale()
+						toneController.updateScale()
 					}
 				}
 				Picker("Waveform", selection: $settings.waveform) {
@@ -68,13 +66,13 @@ struct ContentView: View {
 					}
 				}
 				.pickerStyle(.segmented)
-				.onChange(of: settings.waveform) { waveform in
-					toneController.toneOutputUnit.waveform = waveform
+				.onChange(of: settings.waveform) { _ in
+					toneController.updateWaveform()
 				}
 				HStack {
 					Toggle("Enable Sound", isOn: $settings.isSoundEnabled)
 						.onChange(of: settings.isSoundEnabled) { _ in
-							updateVolume()
+							toneController.updateVolume()
 						}
 						.toggleStyle(.button)
 					Slider(value: $settings.volume, in: 0...0x7fff) {
@@ -87,7 +85,7 @@ struct ContentView: View {
 							.labelStyle(.iconOnly)
 					}
 					.onChange(of: settings.volume) { _ in
-						updateVolume()
+						toneController.updateVolume()
 					}
 				}
 			}
@@ -99,35 +97,5 @@ struct ContentView: View {
 			}
 		}
 		.navigationTitle("Muvica")
-		.onAppear {
-			motionDetector.callback = updateFrequency(_:)
-			updateScale()
-			updateVolume()
-		}
-	}
-
-	private func updateFrequency(_ angle: Double) {
-		let lastFrequency = toneController.toneOutputUnit.frequency
-		toneController.updateNote(angle / (2 * Double.pi))
-		// Provide feedback when changing notes
-		if toneController.toneOutputUnit.frequency != lastFrequency {
-			feedbackGenerator.selectionChanged()
-		}
-	}
-
-	private func updateScale() {
-		toneController.setScale(
-			tonic: settings.tonic,
-			type: settings.scaleType,
-			minOctave: settings.minOctave,
-			maxOctave: settings.maxOctave)
-	}
-
-	private func updateVolume() {
-		toneController.toneOutputUnit.volume = settings.isSoundEnabled ? settings.volume : 0
-	}
-
-	init() {
-		feedbackGenerator.prepare()
 	}
 }
