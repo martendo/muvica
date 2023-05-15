@@ -2,6 +2,7 @@ import CoreMotion
 
 class MotionDetector: ObservableObject {
 	private let motion: CMMotionManager!
+	private let updateInterval: TimeInterval = 1.0 / 60.0
 
 	@Published var angle: Double = 0.0
 	var callback: ((Double) -> Void)?
@@ -11,7 +12,7 @@ class MotionDetector: ObservableObject {
 
 		self.motion = CMMotionManager()
 		if self.motion.isDeviceMotionAvailable {
-			self.motion.deviceMotionUpdateInterval = 1.0 / 60.0
+			self.motion.deviceMotionUpdateInterval = self.updateInterval
 			self.motion.startDeviceMotionUpdates(using: .xArbitraryCorrectedZVertical, to: OperationQueue.main, withHandler: self.handleMotion)
 		} else {
 			print("Device motion not available")
@@ -31,10 +32,6 @@ class MotionDetector: ObservableObject {
 		if let callback = self.callback {
 			callback(self.angle)
 		}
-	}
-
-	func setUpdateInterval(_ interval: TimeInterval) {
-		self.motion.deviceMotionUpdateInterval = interval
 	}
 
 	deinit {
