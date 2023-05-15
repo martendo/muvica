@@ -4,6 +4,8 @@ class MotionDetector: ObservableObject {
 	private let motion: CMMotionManager!
 	private let updateInterval: TimeInterval = 1.0 / 60.0
 
+	private var timer: Timer?
+
 	@Published var angle: Double = 0.0
 	var callback: ((Double) -> Void)?
 
@@ -13,18 +15,22 @@ class MotionDetector: ObservableObject {
 		self.motion = CMMotionManager()
 		if self.motion.isDeviceMotionAvailable {
 			self.motion.deviceMotionUpdateInterval = self.updateInterval
-			self.motion.startDeviceMotionUpdates(using: .xArbitraryCorrectedZVertical, to: OperationQueue.main, withHandler: self.handleMotion)
+			self.motion.startDeviceMotionUpdates(using: .xArbitraryCorrectedZVertical)
+			self.timer = Timer(fire: Date(), interval: self.motion.deviceMotionUpdateInterval, repeats: true) { timer in
+				guard let data = self.motion.deviceMotion else {
+					return
+				}
+				self.handleMotion(data: data)
+			}
+			RunLoop.current.add(self.timer!, forMode: .default)
 		} else {
 			print("Device motion not available")
 		}
 	}
 
-	func handleMotion(data: CMDeviceMotion?, error: Error?) {
-		guard data != nil else {
-			return
-		}
+	func handleMotion(data: CMDeviceMotion) {
 		// Calculate yaw angle from quaternion attitude value
-		let q = data!.attitude.quaternion
+		let q = data.attitude.quaternion
 		let siny_cosp = 2 * (q.w * q.z + q.x * q.y)
 		let cosy_cosp = 1 - 2 * (q.y * q.y + q.z * q.z)
 		self.angle = atan2(siny_cosp, cosy_cosp) + Double.pi + Double.pi / 2
