@@ -94,6 +94,9 @@ struct ContentView: View {
 			NavigationLink("Appearance Settings") {
 				AppearanceSettingsView()
 			}
+			NavigationLink("Device Configuration") {
+				DeviceSettingsView()
+			}
 		}
 		.navigationTitle("Muvica")
 		.onAppear {

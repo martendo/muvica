@@ -10,6 +10,7 @@
 		4A6127812A0EB5EE00520BD9 /* ColorRingView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4A6127802A0EB5EE00520BD9 /* ColorRingView.swift */; };
 		4A6127832A0EB72500520BD9 /* Settings.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4A6127822A0EB72500520BD9 /* Settings.swift */; };
 		4A6127852A0EBF3600520BD9 /* AppearanceSettingsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4A6127842A0EBF3600520BD9 /* AppearanceSettingsView.swift */; };
+		4A8FFBCD2A129F5B0048CB19 /* DeviceSettingsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4A8FFBCC2A129F5B0048CB19 /* DeviceSettingsView.swift */; };
 		4AB5A2242A0BFB1000A9E255 /* MuvicaApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4AB5A2232A0BFB1000A9E255 /* MuvicaApp.swift */; };
 		4AB5A2262A0BFB1000A9E255 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4AB5A2252A0BFB1000A9E255 /* ContentView.swift */; };
 		4AB5A2282A0BFB1100A9E255 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 4AB5A2272A0BFB1100A9E255 /* Assets.xcassets */; };
@@ -23,6 +24,7 @@
 		4A6127802A0EB5EE00520BD9 /* ColorRingView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ColorRingView.swift; sourceTree = "<group>"; };
 		4A6127822A0EB72500520BD9 /* Settings.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Settings.swift; sourceTree = "<group>"; };
 		4A6127842A0EBF3600520BD9 /* AppearanceSettingsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppearanceSettingsView.swift; sourceTree = "<group>"; };
+		4A8FFBCC2A129F5B0048CB19 /* DeviceSettingsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DeviceSettingsView.swift; sourceTree = "<group>"; };
 		4AB5A2202A0BFB1000A9E255 /* Muvica.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Muvica.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		4AB5A2232A0BFB1000A9E255 /* MuvicaApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MuvicaApp.swift; sourceTree = "<group>"; usesTabs = 1; };
 		4AB5A2252A0BFB1000A9E255 /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; usesTabs = 1; };
@@ -73,6 +75,7 @@
 				4A6127802A0EB5EE00520BD9 /* ColorRingView.swift */,
 				4A6127822A0EB72500520BD9 /* Settings.swift */,
 				4A6127842A0EBF3600520BD9 /* AppearanceSettingsView.swift */,
+				4A8FFBCC2A129F5B0048CB19 /* DeviceSettingsView.swift */,
 			);
 			path = Muvica;
 			sourceTree = "<group>";
@@ -156,6 +159,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				4AB5A2262A0BFB1000A9E255 /* ContentView.swift in Sources */,
+				4A8FFBCD2A129F5B0048CB19 /* DeviceSettingsView.swift in Sources */,
 				4AB5A2342A0BFE6A00A9E255 /* ToneController.swift in Sources */,
 				4AB5A2242A0BFB1000A9E255 /* MuvicaApp.swift in Sources */,
 				4A6127852A0EBF3600520BD9 /* AppearanceSettingsView.swift in Sources */,

@@ -1,6 +1,8 @@
 import Foundation
 
 class Settings: ObservableObject {
+	@Published var motionUpdateFrequency: Double = 60.0
+
 	@Published var scaleType: ScaleType = .majorPentatonic
 	@Published var tonic: Note = .c
 	@Published var minOctave: Int = 4
