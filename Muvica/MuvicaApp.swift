@@ -10,8 +10,11 @@ struct MuvicaApp: App {
 
 	var body: some Scene {
 		WindowGroup {
-			NavigationStack {
-				ContentView()
+			TabView {
+				RotophoneView()
+					.tabItem {
+						Label("Rotophone", systemImage: "ring.circle")
+					}
 			}
 			.environmentObject(motionDetector)
 			.environmentObject(toneController)
