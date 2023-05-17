@@ -15,6 +15,10 @@ struct MuvicaApp: App {
 					.tabItem {
 						Label("Rotophone", systemImage: "ring.circle")
 					}
+				ShakerView()
+					.tabItem {
+						Label("Shaker", systemImage: "hand.wave")
+					}
 			}
 			.environmentObject(motionDetector)
 			.environmentObject(toneController)
