@@ -8,7 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		4A6127812A0EB5EE00520BD9 /* ColorRingView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4A6127802A0EB5EE00520BD9 /* ColorRingView.swift */; };
-		4A6127832A0EB72500520BD9 /* Settings.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4A6127822A0EB72500520BD9 /* Settings.swift */; };
+		4A6127832A0EB72500520BD9 /* Control.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4A6127822A0EB72500520BD9 /* Control.swift */; };
 		4A6127852A0EBF3600520BD9 /* AppearanceSettingsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4A6127842A0EBF3600520BD9 /* AppearanceSettingsView.swift */; };
 		4AB5A2242A0BFB1000A9E255 /* MuvicaApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4AB5A2232A0BFB1000A9E255 /* MuvicaApp.swift */; };
 		4AB5A2262A0BFB1000A9E255 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4AB5A2252A0BFB1000A9E255 /* ContentView.swift */; };
@@ -21,7 +21,7 @@
 
 /* Begin PBXFileReference section */
 		4A6127802A0EB5EE00520BD9 /* ColorRingView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ColorRingView.swift; sourceTree = "<group>"; };
-		4A6127822A0EB72500520BD9 /* Settings.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Settings.swift; sourceTree = "<group>"; };
+		4A6127822A0EB72500520BD9 /* Control.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Control.swift; sourceTree = "<group>"; };
 		4A6127842A0EBF3600520BD9 /* AppearanceSettingsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppearanceSettingsView.swift; sourceTree = "<group>"; };
 		4AB5A2202A0BFB1000A9E255 /* Muvica.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Muvica.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		4AB5A2232A0BFB1000A9E255 /* MuvicaApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MuvicaApp.swift; sourceTree = "<group>"; usesTabs = 1; };
@@ -71,7 +71,7 @@
 				4AB5A2332A0BFE6A00A9E255 /* ToneController.swift */,
 				4AB5A2352A0BFE7B00A9E255 /* ToneOutputUnit.swift */,
 				4A6127802A0EB5EE00520BD9 /* ColorRingView.swift */,
-				4A6127822A0EB72500520BD9 /* Settings.swift */,
+				4A6127822A0EB72500520BD9 /* Control.swift */,
 				4A6127842A0EBF3600520BD9 /* AppearanceSettingsView.swift */,
 			);
 			path = Muvica;
@@ -160,7 +160,7 @@
 				4AB5A2242A0BFB1000A9E255 /* MuvicaApp.swift in Sources */,
 				4A6127852A0EBF3600520BD9 /* AppearanceSettingsView.swift in Sources */,
 				4AB5A2322A0BFE4A00A9E255 /* MotionDetector.swift in Sources */,
-				4A6127832A0EB72500520BD9 /* Settings.swift in Sources */,
+				4A6127832A0EB72500520BD9 /* Control.swift in Sources */,
 				4A6127812A0EB5EE00520BD9 /* ColorRingView.swift in Sources */,
 				4AB5A2362A0BFE7B00A9E255 /* ToneOutputUnit.swift in Sources */,
 			);

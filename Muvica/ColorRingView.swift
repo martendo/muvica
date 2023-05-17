@@ -1,11 +1,18 @@
 import SwiftUI
 
 struct ColorRingView: View {
-	@ObservedObject private var settings = Settings.shared
+	@ObservedObject private var control = Control.shared
 	@EnvironmentObject private var motionDetector: MotionDetector
 	@EnvironmentObject private var toneController: ToneController
-	
+
+	@GestureState private var isPressing: Bool = false
+
     var body: some View {
+		let pressGesture = DragGesture(minimumDistance: 0)
+			.updating($isPressing) { _, gestureState, _ in
+				gestureState = true
+			}
+
 		Canvas(rendersAsynchronously: true) { context, size in
 			let marker = motionDetector.angle / (2 * Double.pi)
 			for i in 0..<toneController.scale.count {
@@ -13,11 +20,11 @@ struct ColorRingView: View {
 				let start = Double(i) / Double(toneController.scale.count)
 				let end = Double(i + 1) / Double(toneController.scale.count)
 				// Whether or not the current slice is the note being played
-				let isPlaying = settings.isSoundEnabled && marker >= start && marker < end
+				let isPlaying = control.isPlaying && marker >= start && marker < end
 				let sliceColor = Color(
-					hue: settings.isColorVaryingHue ? ((settings.colorMaxHue - settings.colorMinHue) * start + settings.colorMinHue) : settings.colorMinHue,
-					saturation: settings.isColorVaryingSaturation ? start : (isPlaying ? 0.75 : 0.5),
-					brightness: settings.isColorVaryingBrightness ? start : (isPlaying ? 0.5 : 0.9))
+					hue: control.isColorVaryingHue ? ((control.colorMaxHue - control.colorMinHue) * start + control.colorMinHue) : control.colorMinHue,
+					saturation: control.isColorVaryingSaturation ? start : (isPlaying ? 0.75 : 0.5),
+					brightness: control.isColorVaryingBrightness ? start : (isPlaying ? 0.5 : 0.9))
 
 				// Draw this slice
 				var path = Path()
@@ -41,7 +48,7 @@ struct ColorRingView: View {
 				height: innerCircleWidth))
 			context.fill(centerPath, with: .color(.white))
 
-			if settings.isShowingSeparators {
+			if control.isShowingSeparators {
 				var i = 0
 				// Draw a black line to separate each tonic of the scale (except the last)
 				while i < toneController.scale.count - 1 {
@@ -56,10 +63,18 @@ struct ColorRingView: View {
 					separatorPath.addLine(to: point)
 					context.stroke(separatorPath, with: .color(.black), lineWidth: 2)
 					// Next octave
-					i += settings.scaleType.intervals.count
+					i += control.scaleType.intervals.count
 				}
 			}
 		}
+		.gesture(pressGesture)
+		.onChange(of: isPressing) { _ in
+			updatePressingState()
+		}
     }
-}
 
+	private func updatePressingState() {
+		control.isPressing = isPressing
+		toneController.updateVolume()
+	}
+}

@@ -1,15 +1,20 @@
 import Foundation
 
-class Settings: ObservableObject {
-	static let shared = Settings()
+class Control: ObservableObject {
+	static let shared = Control()
 
 	@Published var scaleType: ScaleType = .majorPentatonic
 	@Published var tonic: Note = .c
 	@Published var minOctave: Int = 4
 	@Published var maxOctave: Int = 6
 	@Published var waveform: Waveform = .sine
-	@Published var isSoundEnabled: Bool = false
+	@Published var isSoundEnabled: Bool = true
+	@Published var isPressing: Bool = false
 	@Published var volume: Double = 0x7fff
+
+	var isPlaying: Bool {
+		return isSoundEnabled && isPressing
+	}
 
 	@Published var isShowingSeparators: Bool = false
 	@Published var isColorVaryingHue: Bool = true

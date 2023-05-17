@@ -2,7 +2,7 @@ import SwiftUI
 
 @main
 struct MuvicaApp: App {
-	@StateObject private var settings = Settings.shared
+	@StateObject private var control = Control.shared
 	@StateObject private var motionDetector = MotionDetector()
 	@StateObject private var toneController = ToneController()
 

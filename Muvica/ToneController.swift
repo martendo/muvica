@@ -54,7 +54,7 @@ enum Note: String, CaseIterable, Identifiable {
 }
 
 class ToneController: ObservableObject {
-	@ObservedObject private var settings = Settings.shared
+	@ObservedObject private var control = Control.shared
 
 	// A note value of 0 should correspond to C1, which normally has a value of 4 (A0 = 1)
 	let baseOffset: Int = 4
@@ -84,17 +84,17 @@ class ToneController: ObservableObject {
 
 	func updateScale() {
 		self.setScale(
-			tonic: settings.tonic,
-			type: settings.scaleType,
-			minOctave: settings.minOctave,
-			maxOctave: settings.maxOctave)
+			tonic: control.tonic,
+			type: control.scaleType,
+			minOctave: control.minOctave,
+			maxOctave: control.maxOctave)
 	}
 
 	func updateWaveform() {
-		self.toneOutputUnit.waveform = settings.waveform
+		self.toneOutputUnit.waveform = control.waveform
 	}
 
 	func updateVolume() {
-		self.toneOutputUnit.volume = settings.isSoundEnabled ? settings.volume : 0
+		self.toneOutputUnit.volume = control.isPlaying ? control.volume : 0
 	}
 }

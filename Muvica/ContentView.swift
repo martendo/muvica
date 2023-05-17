@@ -4,7 +4,7 @@ struct ContentView: View {
 	let markerWidth: CGFloat = 200
 	let markerHeight: CGFloat = 5
 
-	@ObservedObject private var settings = Settings.shared
+	@ObservedObject private var control = Control.shared
 	@EnvironmentObject private var motionDetector: MotionDetector
 	@EnvironmentObject private var toneController: ToneController
 
@@ -25,57 +25,57 @@ struct ContentView: View {
 				Spacer()
 			}
 			Section("Control") {
-				Picker("Scale", selection: $settings.scaleType) {
+				Picker("Scale", selection: $control.scaleType) {
 					ForEach(ScaleType.allCases) { type in
 						Text(type.rawValue)
 					}
 				}
-				.onChange(of: settings.scaleType) { _ in
+				.onChange(of: control.scaleType) { _ in
 					toneController.updateScale()
 				}
-				Picker("Tonic", selection: $settings.tonic) {
+				Picker("Tonic", selection: $control.tonic) {
 					ForEach(Note.allCases) { note in
 						Text(note.rawValue)
 					}
 				}
 				.pickerStyle(.segmented)
-				.onChange(of: settings.tonic) { _ in
+				.onChange(of: control.tonic) { _ in
 					toneController.updateScale()
 				}
 				HStack {
 					Text("From")
 						.font(.caption)
 						.foregroundColor(.secondary)
-					Stepper(value: $settings.minOctave, in: 1...settings.maxOctave) {
-						Text("\(settings.tonic.rawValue)\(settings.minOctave)")
+					Stepper(value: $control.minOctave, in: 1...control.maxOctave) {
+						Text("\(control.tonic.rawValue)\(control.minOctave)")
 					} onEditingChanged: { _ in
 						toneController.updateScale()
 					}
 					Text("to")
 						.font(.caption)
 						.foregroundColor(.secondary)
-					Stepper(value: $settings.maxOctave, in: settings.minOctave...7) {
-						Text("\(settings.tonic.rawValue)\(settings.maxOctave)")
+					Stepper(value: $control.maxOctave, in: control.minOctave...7) {
+						Text("\(control.tonic.rawValue)\(control.maxOctave)")
 					} onEditingChanged: { _ in
 						toneController.updateScale()
 					}
 				}
-				Picker("Waveform", selection: $settings.waveform) {
+				Picker("Waveform", selection: $control.waveform) {
 					ForEach(Waveform.allCases) { waveform in
 						Text(waveform.rawValue)
 					}
 				}
 				.pickerStyle(.segmented)
-				.onChange(of: settings.waveform) { _ in
+				.onChange(of: control.waveform) { _ in
 					toneController.updateWaveform()
 				}
 				HStack {
-					Toggle("Enable Sound", isOn: $settings.isSoundEnabled)
-						.onChange(of: settings.isSoundEnabled) { _ in
+					Toggle("Enable Sound", isOn: $control.isSoundEnabled)
+						.onChange(of: control.isSoundEnabled) { _ in
 							toneController.updateVolume()
 						}
 						.toggleStyle(.button)
-					Slider(value: $settings.volume, in: 0...0x7fff) {
+					Slider(value: $control.volume, in: 0...0x7fff) {
 						Text("Volume")
 					} minimumValueLabel: {
 						Label("Quiet", systemImage: "volume.fill")
@@ -84,7 +84,7 @@ struct ContentView: View {
 						Label("Loud", systemImage: "volume.3.fill")
 							.labelStyle(.iconOnly)
 					}
-					.onChange(of: settings.volume) { _ in
+					.onChange(of: control.volume) { _ in
 						toneController.updateVolume()
 					}
 				}
