@@ -38,8 +38,6 @@ class ToneOutputUnit {
 
 	init() {
 		do {
-			try AVAudioSession.sharedInstance().setCategory(.playback)
-
 			let description = AudioComponentDescription(
 				componentType: kAudioUnitType_Output,
 				componentSubType: kAudioUnitSubType_RemoteIO,

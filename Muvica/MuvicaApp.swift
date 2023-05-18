@@ -1,4 +1,5 @@
 import SwiftUI
+import AVFoundation
 
 @main
 struct MuvicaApp: App {
@@ -16,6 +17,17 @@ struct MuvicaApp: App {
 					.tabItem {
 						Label("Shaker", systemImage: "hand.wave")
 					}
+			}
+			.onAppear {
+				do {
+					try AVAudioSession.sharedInstance().setCategory(.playback)
+					
+					if let asset = NSDataAsset(name: "shaker") {
+						control.shakerAudioPlayer = try AVAudioPlayer(data: asset.data)
+					}
+				} catch let error as NSError {
+					print(error.localizedDescription)
+				}
 			}
 		}
 	}

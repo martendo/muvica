@@ -4,6 +4,7 @@ import CoreMotion
 struct ShakerView: View {
 	let shakeThreshold = 1.0
 
+	@ObservedObject private var control = Control.shared
 	@ObservedObject private var motionDetector = MotionDetector.shared
 
 	@State private var wasShaking: Bool = false
@@ -14,6 +15,7 @@ struct ShakerView: View {
 		}
 		.onAppear {
 			motionDetector.callback = handleMotion(data:)
+			control.shakerAudioPlayer?.prepareToPlay()
 		}
 	}
 
@@ -29,6 +31,8 @@ struct ShakerView: View {
 	}
 
 	func doShake() {
-		print("Shook!")
+		// Reset time of audio in case it's already playing
+		control.shakerAudioPlayer?.currentTime = 0
+		control.shakerAudioPlayer?.play()
 	}
 }

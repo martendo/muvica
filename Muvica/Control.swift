@@ -1,4 +1,5 @@
 import Foundation
+import AVFoundation
 
 class Control: ObservableObject {
 	static let shared = Control()
@@ -22,4 +23,6 @@ class Control: ObservableObject {
 	@Published var isColorVaryingBrightness: Bool = false
 	@Published var colorMinHue: Double = 0.0
 	@Published var colorMaxHue: Double = 1.0
+
+	var shakerAudioPlayer: AVAudioPlayer?
 }
