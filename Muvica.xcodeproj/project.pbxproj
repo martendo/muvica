@@ -14,7 +14,6 @@
 		4AB5A2242A0BFB1000A9E255 /* MuvicaApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4AB5A2232A0BFB1000A9E255 /* MuvicaApp.swift */; };
 		4AB5A2262A0BFB1000A9E255 /* RotophoneView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4AB5A2252A0BFB1000A9E255 /* RotophoneView.swift */; };
 		4AB5A2282A0BFB1100A9E255 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 4AB5A2272A0BFB1100A9E255 /* Assets.xcassets */; };
-		4AB5A22B2A0BFB1100A9E255 /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 4AB5A22A2A0BFB1100A9E255 /* Preview Assets.xcassets */; };
 		4AB5A2322A0BFE4A00A9E255 /* MotionDetector.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4AB5A2312A0BFE4A00A9E255 /* MotionDetector.swift */; };
 		4AB5A2342A0BFE6A00A9E255 /* ToneController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4AB5A2332A0BFE6A00A9E255 /* ToneController.swift */; };
 		4AB5A2362A0BFE7B00A9E255 /* ToneOutputUnit.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4AB5A2352A0BFE7B00A9E255 /* ToneOutputUnit.swift */; };
@@ -29,7 +28,6 @@
 		4AB5A2232A0BFB1000A9E255 /* MuvicaApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MuvicaApp.swift; sourceTree = "<group>"; usesTabs = 1; };
 		4AB5A2252A0BFB1000A9E255 /* RotophoneView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RotophoneView.swift; sourceTree = "<group>"; usesTabs = 1; };
 		4AB5A2272A0BFB1100A9E255 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
-		4AB5A22A2A0BFB1100A9E255 /* Preview Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Preview Assets.xcassets"; sourceTree = "<group>"; };
 		4AB5A2312A0BFE4A00A9E255 /* MotionDetector.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MotionDetector.swift; sourceTree = "<group>"; };
 		4AB5A2332A0BFE6A00A9E255 /* ToneController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ToneController.swift; sourceTree = "<group>"; };
 		4AB5A2352A0BFE7B00A9E255 /* ToneOutputUnit.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ToneOutputUnit.swift; sourceTree = "<group>"; };
@@ -68,7 +66,6 @@
 				4AB5A2232A0BFB1000A9E255 /* MuvicaApp.swift */,
 				4AB5A2252A0BFB1000A9E255 /* RotophoneView.swift */,
 				4AB5A2272A0BFB1100A9E255 /* Assets.xcassets */,
-				4AB5A2292A0BFB1100A9E255 /* Preview Content */,
 				4AB5A2312A0BFE4A00A9E255 /* MotionDetector.swift */,
 				4AB5A2332A0BFE6A00A9E255 /* ToneController.swift */,
 				4AB5A2352A0BFE7B00A9E255 /* ToneOutputUnit.swift */,
@@ -78,14 +75,6 @@
 				4AACCE2F2A154A650034F261 /* ShakerView.swift */,
 			);
 			path = Muvica;
-			sourceTree = "<group>";
-		};
-		4AB5A2292A0BFB1100A9E255 /* Preview Content */ = {
-			isa = PBXGroup;
-			children = (
-				4AB5A22A2A0BFB1100A9E255 /* Preview Assets.xcassets */,
-			);
-			path = "Preview Content";
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -146,7 +135,6 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				4AB5A22B2A0BFB1100A9E255 /* Preview Assets.xcassets in Resources */,
 				4AB5A2282A0BFB1100A9E255 /* Assets.xcassets in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
