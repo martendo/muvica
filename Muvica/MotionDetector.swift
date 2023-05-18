@@ -17,13 +17,12 @@ class MotionDetector: ObservableObject {
 		if self.motion.isDeviceMotionAvailable {
 			self.motion.deviceMotionUpdateInterval = self.updateInterval
 			self.motion.startDeviceMotionUpdates(using: .xArbitraryCorrectedZVertical)
-			self.timer = Timer(fire: Date(), interval: self.motion.deviceMotionUpdateInterval, repeats: true) { timer in
+			self.timer = Timer.scheduledTimer(withTimeInterval: self.motion.deviceMotionUpdateInterval, repeats: true) { timer in
 				guard let callback = self.callback, let data = self.motion.deviceMotion else {
 					return
 				}
 				callback(data)
 			}
-			RunLoop.current.add(self.timer!, forMode: .default)
 		} else {
 			print("Device motion not available")
 		}
@@ -31,5 +30,6 @@ class MotionDetector: ObservableObject {
 
 	deinit {
 		self.motion.stopDeviceMotionUpdates()
+		self.timer?.invalidate()
 	}
 }
