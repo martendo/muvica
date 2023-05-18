@@ -54,6 +54,8 @@ enum Note: String, CaseIterable, Identifiable {
 }
 
 class ToneController: ObservableObject {
+	static let shared = ToneController()
+
 	@ObservedObject private var control = Control.shared
 
 	// A note value of 0 should correspond to C1, which normally has a value of 4 (A0 = 1)

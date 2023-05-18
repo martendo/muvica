@@ -1,12 +1,17 @@
 import SwiftUI
+import CoreMotion
 
 struct RotophoneView: View {
 	let markerWidth: CGFloat = 200
 	let markerHeight: CGFloat = 5
 
 	@ObservedObject private var control = Control.shared
-	@EnvironmentObject private var motionDetector: MotionDetector
-	@EnvironmentObject private var toneController: ToneController
+	@ObservedObject private var motionDetector = MotionDetector.shared
+	@StateObject private var toneController = ToneController.shared
+
+	private let feedbackGenerator = UISelectionFeedbackGenerator()
+
+	@State private var deviceAngle: Double = 0.0
 
 	var body: some View {
 		NavigationStack {
@@ -14,14 +19,14 @@ struct RotophoneView: View {
 				HStack {
 					Spacer()
 					ZStack {
-						ColorRingView()
+						ColorRingView(deviceAngle: deviceAngle)
 							.frame(width: markerWidth + 100, height: markerWidth + 100)
 						// Marker ("needle"?) to represent device angle
 						RoundedRectangle(cornerRadius: 5)
 							.foregroundColor(.black)
 							.frame(width: markerWidth - 50, height: markerHeight)
 							.frame(width: markerWidth, height: markerHeight, alignment: .leading)
-							.rotationEffect(Angle(radians: motionDetector.angle - Double.pi))
+							.rotationEffect(Angle(radians: deviceAngle - Double.pi))
 					}
 					Spacer()
 				}
@@ -97,6 +102,29 @@ struct RotophoneView: View {
 			.listStyle(.sidebar)
 			.navigationTitle("Rotophone")
 			.navigationBarTitleDisplayMode(.inline)
+		}
+		.onAppear {
+			feedbackGenerator.prepare()
+			motionDetector.callback = handleMotion(data:)
+			toneController.updateScale()
+			toneController.updateWaveform()
+			toneController.updateVolume()
+		}
+	}
+
+	private func handleMotion(data: CMDeviceMotion) {
+		// Calculate yaw angle from quaternion attitude value
+		let q = data.attitude.quaternion
+		let siny_cosp = 2 * (q.w * q.z + q.x * q.y)
+		let cosy_cosp = 1 - 2 * (q.y * q.y + q.z * q.z)
+		deviceAngle = atan2(siny_cosp, cosy_cosp) + Double.pi + Double.pi / 2
+		deviceAngle.formTruncatingRemainder(dividingBy: 2 * Double.pi)
+
+		let lastFrequency = toneController.toneOutputUnit.frequency
+		toneController.updateNote(deviceAngle / (2 * Double.pi))
+		// Provide feedback when changing notes
+		if toneController.toneOutputUnit.frequency != lastFrequency {
+			feedbackGenerator.selectionChanged()
 		}
 	}
 }

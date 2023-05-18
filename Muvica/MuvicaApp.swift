@@ -3,10 +3,7 @@ import SwiftUI
 @main
 struct MuvicaApp: App {
 	@StateObject private var control = Control.shared
-	@StateObject private var motionDetector = MotionDetector()
-	@StateObject private var toneController = ToneController()
-
-	private var feedbackGenerator = UISelectionFeedbackGenerator()
+	@StateObject private var motionDetector = MotionDetector.shared
 
 	var body: some Scene {
 		WindowGroup {
@@ -20,24 +17,6 @@ struct MuvicaApp: App {
 						Label("Shaker", systemImage: "hand.wave")
 					}
 			}
-			.environmentObject(motionDetector)
-			.environmentObject(toneController)
-			.onAppear {
-				feedbackGenerator.prepare()
-				motionDetector.callback = updateFrequency(_:)
-				toneController.updateScale()
-				toneController.updateWaveform()
-				toneController.updateVolume()
-			}
-		}
-	}
-
-	private func updateFrequency(_ angle: Double) {
-		let lastFrequency = toneController.toneOutputUnit.frequency
-		toneController.updateNote(angle / (2 * Double.pi))
-		// Provide feedback when changing notes
-		if toneController.toneOutputUnit.frequency != lastFrequency {
-			feedbackGenerator.selectionChanged()
 		}
 	}
 }

@@ -2,10 +2,12 @@ import SwiftUI
 
 struct ColorRingView: View {
 	@ObservedObject private var control = Control.shared
-	@EnvironmentObject private var motionDetector: MotionDetector
-	@EnvironmentObject private var toneController: ToneController
+	@ObservedObject private var motionDetector = MotionDetector.shared
+	@ObservedObject private var toneController = ToneController.shared
 
 	@GestureState private var isPressing: Bool = false
+
+	let deviceAngle: Double
 
     var body: some View {
 		let pressGesture = DragGesture(minimumDistance: 0)
@@ -14,7 +16,7 @@ struct ColorRingView: View {
 			}
 
 		Canvas(rendersAsynchronously: true) { context, size in
-			let marker = motionDetector.angle / (2 * Double.pi)
+			let marker = deviceAngle / (2 * Double.pi)
 			for i in 0..<toneController.scale.count {
 				// Bounds (from 0.0 to 1.0) of this slice of the wheel
 				let start = Double(i) / Double(toneController.scale.count)
