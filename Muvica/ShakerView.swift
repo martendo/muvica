@@ -4,14 +4,21 @@ import CoreMotion
 struct ShakerView: View {
 	let shakeThreshold = 1.0
 
+	let ringWidth: CGFloat = 300
+
 	@ObservedObject private var control = Control.shared
 	@ObservedObject private var motionDetector = MotionDetector.shared
 
-	@State private var wasShaking: Bool = false
+	@State private var deviceShakeValue: Double = 0.0
 
 	var body: some View {
 		List {
-			Text("Shaker")
+			HStack {
+				Spacer()
+				ShakerRingView(ringWidth: ringWidth, deviceShakeValue: deviceShakeValue)
+					.frame(width: ringWidth, height: ringWidth)
+				Spacer()
+			}
 		}
 		.onAppear {
 			motionDetector.callback = handleMotion(data:)
@@ -22,12 +29,12 @@ struct ShakerView: View {
 	func handleMotion(data: CMDeviceMotion) {
 		// Detect shake from magnitude of acceleration
 		let a = data.userAcceleration
-		let magsqr = a.x * a.x + a.y * a.y + a.z * a.z
-		let isShaking = magsqr >= shakeThreshold
-		if isShaking && !wasShaking {
+		let magnitude = (a.x * a.x + a.y * a.y + a.z * a.z).squareRoot()
+		// There was no shake on last update when deviceShakeValue < 1.0 -> this is a new shake
+		if magnitude >= shakeThreshold && deviceShakeValue < 1.0 {
 			doShake()
 		}
-		wasShaking = isShaking
+		deviceShakeValue = magnitude / shakeThreshold
 	}
 
 	func doShake() {
