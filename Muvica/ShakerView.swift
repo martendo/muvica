@@ -2,14 +2,20 @@ import SwiftUI
 import CoreMotion
 
 struct ShakerView: View {
-	let shakeThreshold = 1.0
-
 	let ringWidth: CGFloat = 300
 
 	@ObservedObject private var control = Control.shared
 	@ObservedObject private var motionDetector = MotionDetector.shared
 
 	@State private var deviceShakeValue: Double = 0.0
+
+	@State private var sensitivity: Double = 0.7
+
+	let maxShakeThreshold: Double = 0.25
+	let minShakeThreshold: Double = 3.0
+	private var shakeThreshold: Double {
+		return sensitivity * (maxShakeThreshold - minShakeThreshold) + minShakeThreshold
+	}
 
 	var body: some View {
 		List {
@@ -19,7 +25,16 @@ struct ShakerView: View {
 					.frame(width: ringWidth, height: ringWidth)
 				Spacer()
 			}
+			Section("Control") {
+				HStack {
+					Text("Sensitivity")
+					Slider(value: $sensitivity) {
+						Text("Sensitivity")
+					}
+				}
+			}
 		}
+		.listStyle(.sidebar)
 		.onAppear {
 			motionDetector.callback = handleMotion(data:)
 			control.shakerAudioPlayer?.prepareToPlay()
