@@ -14,7 +14,7 @@ struct ShakerRingView: View {
 				.frame(width: circleWidth, height: circleWidth)
 				.onChange(of: deviceShakeValue >= 1.0) { newValue in
 					if !newValue {
-						withAnimation(.easeOut) {
+						withAnimation(.easeOut(duration: 0.1)) {
 							isCircleColored = false
 						}
 					} else {
