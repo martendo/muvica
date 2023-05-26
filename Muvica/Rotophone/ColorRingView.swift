@@ -2,11 +2,12 @@ import SwiftUI
 
 struct ColorRingView: View {
 	@EnvironmentObject private var control: Control
-	let toneController: ToneController
+	@EnvironmentObject private var toneController: ToneController
 
 	@GestureState private var isPressing: Bool = false
 
-	let deviceAngle: Double
+	let isActive: Bool
+	let deviceTurn: Double?
 
     var body: some View {
 		let pressGesture = DragGesture(minimumDistance: 0)
@@ -15,13 +16,12 @@ struct ColorRingView: View {
 			}
 
 		Canvas(rendersAsynchronously: true) { context, size in
-			let marker = deviceAngle / (2 * Double.pi)
 			for i in 0..<toneController.scale.count {
 				// Bounds (from 0.0 to 1.0) of this slice of the wheel
 				let start = Double(i) / Double(toneController.scale.count)
 				let end = Double(i + 1) / Double(toneController.scale.count)
 				// Whether or not the current slice is the note being played
-				let isPlaying = control.isPlaying && marker >= start && marker < end
+				let isPlaying = deviceTurn != nil ? (control.isPlaying && deviceTurn! >= start && deviceTurn! < end) : false
 				let sliceColor = Color(
 					hue: control.isColorVaryingHue ? ((control.colorMaxHue - control.colorMinHue) * start + control.colorMinHue) : control.colorMinHue,
 					saturation: control.isColorVaryingSaturation ? start : (isPlaying ? 0.75 : 0.5),
@@ -68,7 +68,7 @@ struct ColorRingView: View {
 				}
 			}
 		}
-		.gesture(pressGesture)
+		.gesture(pressGesture, including: isActive ? .gesture : .none)
 		.onChange(of: isPressing) { _ in
 			updatePressingState()
 		}

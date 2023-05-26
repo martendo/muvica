@@ -1,10 +1,18 @@
 import SwiftUI
 
 struct AppearanceSettingsView: View {
+	let ringWidth: CGFloat = 300
+
 	@EnvironmentObject private var control: Control
 
 	var body: some View {
 		List {
+			HStack {
+				Spacer()
+				ColorRingView(isActive: false, deviceTurn: nil)
+					.frame(width: ringWidth, height: ringWidth)
+				Spacer()
+			}
 			Toggle("Octave Separators", isOn: $control.isShowingSeparators)
 			Section("Color Ring") {
 				Toggle("Hue Variation", isOn: $control.isColorVaryingHue)

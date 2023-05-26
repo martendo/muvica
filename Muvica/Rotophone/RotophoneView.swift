@@ -19,8 +19,9 @@ struct RotophoneView: View {
 				HStack {
 					Spacer()
 					ZStack {
-						ColorRingView(toneController: toneController, deviceAngle: deviceAngle)
+						ColorRingView(isActive: true, deviceTurn: deviceAngle / (2 * Double.pi))
 							.frame(width: markerWidth + 100, height: markerWidth + 100)
+							.environmentObject(toneController)
 						// Marker ("needle"?) to represent device angle
 						RoundedRectangle(cornerRadius: 5)
 							.foregroundColor(.black)
@@ -97,6 +98,7 @@ struct RotophoneView: View {
 				}
 				NavigationLink("Appearance Settings") {
 					AppearanceSettingsView()
+						.environmentObject(toneController)
 				}
 			}
 			.listStyle(.sidebar)
