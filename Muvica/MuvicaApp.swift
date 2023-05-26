@@ -21,10 +21,6 @@ struct MuvicaApp: App {
 			.onAppear {
 				do {
 					try AVAudioSession.sharedInstance().setCategory(.playback)
-					
-					if let asset = NSDataAsset(name: "shaker") {
-						control.shakerAudioPlayer = try AVAudioPlayer(data: asset.data)
-					}
 				} catch let error as NSError {
 					print(error.localizedDescription)
 				}

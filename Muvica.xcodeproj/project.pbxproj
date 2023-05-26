@@ -17,6 +17,7 @@
 		4AB5A2322A0BFE4A00A9E255 /* MotionDetector.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4AB5A2312A0BFE4A00A9E255 /* MotionDetector.swift */; };
 		4AB5A2342A0BFE6A00A9E255 /* ToneController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4AB5A2332A0BFE6A00A9E255 /* ToneController.swift */; };
 		4AB5A2362A0BFE7B00A9E255 /* ToneOutputUnit.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4AB5A2352A0BFE7B00A9E255 /* ToneOutputUnit.swift */; };
+		4AD4E3232A1FC4280063E265 /* ShakerAudioPlayer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4AD4E3222A1FC4280063E265 /* ShakerAudioPlayer.swift */; };
 		4AFE8D102A17FE540023C7F7 /* ShakerRingView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4AFE8D0F2A17FE540023C7F7 /* ShakerRingView.swift */; };
 /* End PBXBuildFile section */
 
@@ -32,6 +33,7 @@
 		4AB5A2312A0BFE4A00A9E255 /* MotionDetector.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MotionDetector.swift; sourceTree = "<group>"; };
 		4AB5A2332A0BFE6A00A9E255 /* ToneController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ToneController.swift; sourceTree = "<group>"; };
 		4AB5A2352A0BFE7B00A9E255 /* ToneOutputUnit.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ToneOutputUnit.swift; sourceTree = "<group>"; };
+		4AD4E3222A1FC4280063E265 /* ShakerAudioPlayer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ShakerAudioPlayer.swift; sourceTree = "<group>"; };
 		4AFE8D0F2A17FE540023C7F7 /* ShakerRingView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ShakerRingView.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -76,6 +78,7 @@
 				4A6127842A0EBF3600520BD9 /* AppearanceSettingsView.swift */,
 				4AACCE2F2A154A650034F261 /* ShakerView.swift */,
 				4AFE8D0F2A17FE540023C7F7 /* ShakerRingView.swift */,
+				4AD4E3222A1FC4280063E265 /* ShakerAudioPlayer.swift */,
 			);
 			path = Muvica;
 			sourceTree = "<group>";
@@ -153,6 +156,7 @@
 				4AB5A2262A0BFB1000A9E255 /* RotophoneView.swift in Sources */,
 				4AB5A2342A0BFE6A00A9E255 /* ToneController.swift in Sources */,
 				4AB5A2242A0BFB1000A9E255 /* MuvicaApp.swift in Sources */,
+				4AD4E3232A1FC4280063E265 /* ShakerAudioPlayer.swift in Sources */,
 				4AACCE302A154A650034F261 /* ShakerView.swift in Sources */,
 				4A6127852A0EBF3600520BD9 /* AppearanceSettingsView.swift in Sources */,
 				4AB5A2322A0BFE4A00A9E255 /* MotionDetector.swift in Sources */,

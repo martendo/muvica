@@ -37,7 +37,6 @@ struct ShakerView: View {
 		.listStyle(.sidebar)
 		.onAppear {
 			motionDetector.callback = handleMotion(data:)
-			control.shakerAudioPlayer?.prepareToPlay()
 		}
 	}
 
@@ -47,14 +46,8 @@ struct ShakerView: View {
 		let magnitude = (a.x * a.x + a.y * a.y + a.z * a.z).squareRoot()
 		// There was no shake on last update when deviceShakeValue < 1.0 -> this is a new shake
 		if magnitude >= shakeThreshold && deviceShakeValue < 1.0 {
-			doShake()
+			control.shakerAudioPlayer.playSound("shaker")
 		}
 		deviceShakeValue = magnitude / shakeThreshold
-	}
-
-	func doShake() {
-		// Reset time of audio in case it's already playing
-		control.shakerAudioPlayer?.currentTime = 0
-		control.shakerAudioPlayer?.play()
 	}
 }

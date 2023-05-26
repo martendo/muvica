@@ -24,5 +24,5 @@ class Control: ObservableObject {
 	@Published var colorMinHue: Double = 0.0
 	@Published var colorMaxHue: Double = 1.0
 
-	var shakerAudioPlayer: AVAudioPlayer?
+	var shakerAudioPlayer = ShakerAudioPlayer()
 }
