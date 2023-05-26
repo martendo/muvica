@@ -50,6 +50,28 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		4A2FE9A02A2131A200064B9F /* Rotophone */ = {
+			isa = PBXGroup;
+			children = (
+				4AB5A2252A0BFB1000A9E255 /* RotophoneView.swift */,
+				4A6127802A0EB5EE00520BD9 /* ColorRingView.swift */,
+				4A6127842A0EBF3600520BD9 /* AppearanceSettingsView.swift */,
+				4AB5A2332A0BFE6A00A9E255 /* ToneController.swift */,
+				4AB5A2352A0BFE7B00A9E255 /* ToneOutputUnit.swift */,
+			);
+			path = Rotophone;
+			sourceTree = "<group>";
+		};
+		4A2FE9A12A2131A900064B9F /* Shaker */ = {
+			isa = PBXGroup;
+			children = (
+				4AACCE2F2A154A650034F261 /* ShakerView.swift */,
+				4AFE8D0F2A17FE540023C7F7 /* ShakerRingView.swift */,
+				4AD4E3222A1FC4280063E265 /* ShakerAudioPlayer.swift */,
+			);
+			path = Shaker;
+			sourceTree = "<group>";
+		};
 		4AB5A2172A0BFB1000A9E255 = {
 			isa = PBXGroup;
 			children = (
@@ -69,19 +91,13 @@
 		4AB5A2222A0BFB1000A9E255 /* Muvica */ = {
 			isa = PBXGroup;
 			children = (
-				4A2FE99D2A212D5600064B9F /* ContentView.swift */,
-				4AB5A2232A0BFB1000A9E255 /* MuvicaApp.swift */,
-				4AB5A2252A0BFB1000A9E255 /* RotophoneView.swift */,
 				4AB5A2272A0BFB1100A9E255 /* Assets.xcassets */,
-				4AB5A2312A0BFE4A00A9E255 /* MotionDetector.swift */,
-				4AB5A2332A0BFE6A00A9E255 /* ToneController.swift */,
-				4AB5A2352A0BFE7B00A9E255 /* ToneOutputUnit.swift */,
-				4A6127802A0EB5EE00520BD9 /* ColorRingView.swift */,
+				4AB5A2232A0BFB1000A9E255 /* MuvicaApp.swift */,
+				4A2FE99D2A212D5600064B9F /* ContentView.swift */,
 				4A6127822A0EB72500520BD9 /* Control.swift */,
-				4A6127842A0EBF3600520BD9 /* AppearanceSettingsView.swift */,
-				4AACCE2F2A154A650034F261 /* ShakerView.swift */,
-				4AFE8D0F2A17FE540023C7F7 /* ShakerRingView.swift */,
-				4AD4E3222A1FC4280063E265 /* ShakerAudioPlayer.swift */,
+				4AB5A2312A0BFE4A00A9E255 /* MotionDetector.swift */,
+				4A2FE9A02A2131A200064B9F /* Rotophone */,
+				4A2FE9A12A2131A900064B9F /* Shaker */,
 			);
 			path = Muvica;
 			sourceTree = "<group>";
@@ -294,7 +310,7 @@
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
-				DEVELOPMENT_ASSET_PATHS = "\"Muvica/Preview Content\"";
+				DEVELOPMENT_ASSET_PATHS = "";
 				DEVELOPMENT_TEAM = 2KFLLK6YV2;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
@@ -323,7 +339,7 @@
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
-				DEVELOPMENT_ASSET_PATHS = "\"Muvica/Preview Content\"";
+				DEVELOPMENT_ASSET_PATHS = "";
 				DEVELOPMENT_TEAM = 2KFLLK6YV2;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
