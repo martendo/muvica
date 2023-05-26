@@ -12,8 +12,8 @@ enum ShakerSound: String, CaseIterable, Identifiable {
 struct ShakerView: View {
 	let ringWidth: CGFloat = 300
 
-	@ObservedObject private var control = Control.shared
-	@ObservedObject private var motionDetector = MotionDetector.shared
+	@EnvironmentObject private var control: Control
+	@EnvironmentObject private var motionDetector: MotionDetector
 
 	@State private var deviceShakeValue: Double = 0.0
 

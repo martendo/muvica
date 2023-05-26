@@ -5,9 +5,9 @@ struct RotophoneView: View {
 	let markerWidth: CGFloat = 200
 	let markerHeight: CGFloat = 5
 
-	@ObservedObject private var control = Control.shared
-	@ObservedObject private var motionDetector = MotionDetector.shared
-	@StateObject private var toneController = ToneController.shared
+	@EnvironmentObject private var control: Control
+	@EnvironmentObject private var motionDetector: MotionDetector
+	@StateObject private var toneController = ToneController()
 
 	private let feedbackGenerator = UISelectionFeedbackGenerator()
 
@@ -19,7 +19,7 @@ struct RotophoneView: View {
 				HStack {
 					Spacer()
 					ZStack {
-						ColorRingView(deviceAngle: deviceAngle)
+						ColorRingView(toneController: toneController, deviceAngle: deviceAngle)
 							.frame(width: markerWidth + 100, height: markerWidth + 100)
 						// Marker ("needle"?) to represent device angle
 						RoundedRectangle(cornerRadius: 5)
@@ -106,6 +106,7 @@ struct RotophoneView: View {
 		.onAppear {
 			feedbackGenerator.prepare()
 			motionDetector.callback = handleMotion(data:)
+			toneController.control = control
 			toneController.updateScale()
 			toneController.updateWaveform()
 			toneController.updateVolume()

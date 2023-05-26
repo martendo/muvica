@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		4A2FE99E2A212D5600064B9F /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4A2FE99D2A212D5600064B9F /* ContentView.swift */; };
 		4A6127812A0EB5EE00520BD9 /* ColorRingView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4A6127802A0EB5EE00520BD9 /* ColorRingView.swift */; };
 		4A6127832A0EB72500520BD9 /* Control.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4A6127822A0EB72500520BD9 /* Control.swift */; };
 		4A6127852A0EBF3600520BD9 /* AppearanceSettingsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4A6127842A0EBF3600520BD9 /* AppearanceSettingsView.swift */; };
@@ -22,6 +23,7 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		4A2FE99D2A212D5600064B9F /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
 		4A6127802A0EB5EE00520BD9 /* ColorRingView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ColorRingView.swift; sourceTree = "<group>"; };
 		4A6127822A0EB72500520BD9 /* Control.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Control.swift; sourceTree = "<group>"; };
 		4A6127842A0EBF3600520BD9 /* AppearanceSettingsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppearanceSettingsView.swift; sourceTree = "<group>"; };
@@ -67,6 +69,7 @@
 		4AB5A2222A0BFB1000A9E255 /* Muvica */ = {
 			isa = PBXGroup;
 			children = (
+				4A2FE99D2A212D5600064B9F /* ContentView.swift */,
 				4AB5A2232A0BFB1000A9E255 /* MuvicaApp.swift */,
 				4AB5A2252A0BFB1000A9E255 /* RotophoneView.swift */,
 				4AB5A2272A0BFB1100A9E255 /* Assets.xcassets */,
@@ -154,6 +157,7 @@
 			files = (
 				4AFE8D102A17FE540023C7F7 /* ShakerRingView.swift in Sources */,
 				4AB5A2262A0BFB1000A9E255 /* RotophoneView.swift in Sources */,
+				4A2FE99E2A212D5600064B9F /* ContentView.swift in Sources */,
 				4AB5A2342A0BFE6A00A9E255 /* ToneController.swift in Sources */,
 				4AB5A2242A0BFB1000A9E255 /* MuvicaApp.swift in Sources */,
 				4AD4E3232A1FC4280063E265 /* ShakerAudioPlayer.swift in Sources */,

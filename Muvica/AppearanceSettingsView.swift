@@ -1,7 +1,7 @@
 import SwiftUI
 
 struct AppearanceSettingsView: View {
-	@ObservedObject private var control = Control.shared
+	@EnvironmentObject private var control: Control
 
 	var body: some View {
 		List {

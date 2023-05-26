@@ -2,8 +2,6 @@ import Foundation
 import AVFoundation
 
 class Control: ObservableObject {
-	static let shared = Control()
-
 	@Published var scaleType: ScaleType = .majorPentatonic
 	@Published var tonic: Note = .c
 	@Published var minOctave: Int = 4

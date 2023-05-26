@@ -1,8 +1,8 @@
 import SwiftUI
 
 struct ColorRingView: View {
-	@ObservedObject private var control = Control.shared
-	@ObservedObject private var toneController = ToneController.shared
+	@EnvironmentObject private var control: Control
+	let toneController: ToneController
 
 	@GestureState private var isPressing: Bool = false
 

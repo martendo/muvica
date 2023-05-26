@@ -1,8 +1,6 @@
 import CoreMotion
 
 class MotionDetector: ObservableObject {
-	static let shared = MotionDetector()
-
 	private let motion: CMMotionManager!
 	private let updateInterval: TimeInterval = 1.0 / 60.0
 
