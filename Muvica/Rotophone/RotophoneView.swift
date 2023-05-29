@@ -12,6 +12,7 @@ struct RotophoneView: View {
 	private let feedbackGenerator = UISelectionFeedbackGenerator()
 
 	@State private var deviceAngle: Double = 0.0
+	@State private var isAppearanceOpen: Bool = false
 
 	var body: some View {
 		NavigationStack {
@@ -97,22 +98,38 @@ struct RotophoneView: View {
 					}
 				}
 				NavigationLink("Appearance Settings") {
-					AppearanceSettingsView()
+					AppearanceSettingsView(isAppearanceOpen: $isAppearanceOpen)
 						.environmentObject(toneController)
+						.onAppear {
+							isAppearanceOpen = true
+						}
 				}
 			}
 			.listStyle(.sidebar)
 			.navigationTitle("Rotophone")
 			.navigationBarTitleDisplayMode(.inline)
 		}
-		.onAppear {
-			feedbackGenerator.prepare()
-			motionDetector.callback = handleMotion(data:)
-			toneController.control = control
-			toneController.updateScale()
-			toneController.updateWaveform()
-			toneController.updateVolume()
+		.onChange(of: isAppearanceOpen) { newValue in
+			if newValue {
+				motionDetector.callback = nil
+			} else {
+				setup()
+			}
 		}
+		.onAppear {
+			if !isAppearanceOpen {
+				setup()
+			}
+		}
+	}
+
+	private func setup() {
+		feedbackGenerator.prepare()
+		motionDetector.callback = handleMotion(data:)
+		toneController.control = control
+		toneController.updateScale()
+		toneController.updateWaveform()
+		toneController.updateVolume()
 	}
 
 	private func handleMotion(data: CMDeviceMotion) {

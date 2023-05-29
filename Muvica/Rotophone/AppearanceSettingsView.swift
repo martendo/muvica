@@ -5,6 +5,9 @@ struct AppearanceSettingsView: View {
 
 	@EnvironmentObject private var control: Control
 
+	@Environment(\.isPresented) private var isPresented
+	@Binding var isAppearanceOpen: Bool
+
 	var body: some View {
 		List {
 			HStack {
@@ -61,5 +64,8 @@ struct AppearanceSettingsView: View {
 			}
 		}
 		.navigationTitle("Appearance Settings")
+		.onChange(of: isPresented) { newValue in
+			isAppearanceOpen = newValue
+		}
 	}
 }
