@@ -14,6 +14,8 @@ struct ShakerView: View {
 
 	@EnvironmentObject private var control: Control
 	@EnvironmentObject private var motionDetector: MotionDetector
+	
+	private let feedbackGenerator = UISelectionFeedbackGenerator()
 
 	@State private var deviceShakeValue: Double = 0.0
 
@@ -66,6 +68,7 @@ struct ShakerView: View {
 		// There was no shake on last update when deviceShakeValue < 1.0 -> this is a new shake
 		if magnitude >= shakeThreshold && deviceShakeValue < 1.0 {
 			control.shakerAudioPlayer.playSound(soundSelection.rawValue)
+			feedbackGenerator.selectionChanged()
 		}
 		deviceShakeValue = magnitude / shakeThreshold
 	}
