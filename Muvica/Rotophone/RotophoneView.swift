@@ -78,11 +78,17 @@ struct RotophoneView: View {
 						toneController.updateWaveform()
 					}
 					HStack {
-						Toggle("Enable Sound", isOn: $control.isSoundEnabled)
-							.onChange(of: control.isSoundEnabled) { _ in
-								toneController.updateVolume()
+						Toggle(isOn: $control.isPressOn) {
+							if control.isPressOn {
+								Text("Tap Turns On")
+							} else {
+								Text("Tap Turns Off")
 							}
-							.toggleStyle(.button)
+						}
+						.onChange(of: control.isPressOn) { _ in
+							toneController.updateVolume()
+						}
+						.toggleStyle(.button)
 						Slider(value: $control.volume, in: 0...0x7fff) {
 							Text("Volume")
 						} minimumValueLabel: {

@@ -7,12 +7,12 @@ class Control: ObservableObject {
 	@Published var minOctave: Int = 4
 	@Published var maxOctave: Int = 6
 	@Published var waveform: Waveform = .sine
-	@Published var isSoundEnabled: Bool = true
+	@Published var isPressOn: Bool = true
 	@Published var isPressing: Bool = false
 	@Published var volume: Double = 0x7fff
 
 	var isPlaying: Bool {
-		return isSoundEnabled && isPressing
+		return isPressOn ? isPressing : !isPressing
 	}
 
 	@Published var isShowingSeparators: Bool = false
