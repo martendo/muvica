@@ -2,7 +2,10 @@ import SwiftUI
 import CoreMotion
 
 enum ShakerSound: String, CaseIterable, Identifiable {
-	case shaker
+	case shaker = "Shaker"
+	case kick = "Bass Drum"
+	case snare = "Snare Drum"
+	case hiHat = "Hi-Hat"
 
 	var id: Self {
 		return self
@@ -14,7 +17,7 @@ struct ShakerView: View {
 
 	@EnvironmentObject private var control: Control
 	@EnvironmentObject private var motionDetector: MotionDetector
-	
+
 	private let feedbackGenerator = UISelectionFeedbackGenerator()
 
 	@State private var deviceShakeValue: Double = 0.0
@@ -47,7 +50,7 @@ struct ShakerView: View {
 				}
 				Picker("Sound", selection: $soundSelection) {
 					ForEach(ShakerSound.allCases) { sound in
-						Text(sound.rawValue.capitalized)
+						Text(sound.rawValue)
 					}
 				}
 				.pickerStyle(.navigationLink)
